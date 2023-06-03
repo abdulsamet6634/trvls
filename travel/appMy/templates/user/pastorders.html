@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+  <style>
+    .call-to-action{
+      margin-top: 0px ;
+     }
+    .details{
+      border-bottom: 1px solid gray;
+      padding-bottom: 1rem;
+    }
+  </style>
+{% endblock css %}
+
+
+{% block body %}
+
+<div class="account">
+  <div class="row  justify-content-center">
+    <div class="col-md-10 ">
+      <div class="contentss ">
+        <div class="row">
+          <div class="col-md-12   ">
+            <h2>Past Orders</h2>
+            <hr>
+            <div class="detail  ">
+             <form action="" method="POST">
+              {% csrf_token %}
+              {% if past_orders  %}
+         
+              {% for i in past_orders %}
+             <div class="row">
+              <div class="col-md-12  mt-4 details">
+                <div class="row">
+               
+                  <div class="col-md-3" >  <img src="{{ i.tuors.img.url  }}" width="100" alt=""></div>
+                  <div class="col-md-3 align-self-center"> <p>Order ID: <span>{{ i.tuors.continents }}</span></p> </div>
+                  <div class="col-md-3 align-self-center"> <p>Tuors: <span>{{ i.tuors }}</span></p> </div>
+                  <div class="col-md-2 align-self-center">     <p>Total Price: {{ i.total_price }}</p></div>
+                  <div class="col-md-1 align-self-center"> <a href="{% url 'past_orders_delete' i.id %}" class="btn btn-danger">Delete</a></div>
+                  
+                </div>
+               
+                
+               
+            
+               
+              </div>
+             </div>
+              {% endfor %}
+          
+            {% else %}
+            
+            
+             
+            <p>No past orders found.</p>
+            {% endif %}
+          </form>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+   
+
+  
+{% endblock body %}

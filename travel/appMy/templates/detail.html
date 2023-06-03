@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+  <style>
+    
+    .call-to-action{
+        margin-top: 0px ;
+       }
+  </style>
+{% endblock css %}
+{% block body %}
+
+<div class="header detail-header ">
+    <div class="container  ">
+        <div class="heads ">
+          <div class="content mt-1 ">
+           <div class="gg text-center">
+            <h3> {{ continents.header }} </h3>
+            <p>{{ continents.text }}</p>
+            <hr>
+            <h1>Countries</h1>
+            <hr>
+            {% for i in Countries  %}
+            <h3 class="mt-5" style="border-bottom: 3px solid white;">{{ i.name }}</h3>
+            
+            <div class="row mt-5">
+              <div class="col-md-12">
+             
+
+        
+                  <img src="{{ i.img.url }}" width="800" alt="">
+                  <p></p>
+              </div>
+              <div class="col-md-12 align-self-center">
+                <p> {{ i.text }}  </p>
+              </div>
+              <div class="col-md-12">
+               
+              </div>
+          </div>
+            {% endfor %}
+               </div>
+          </div>
+          
+        </div>
+
+        </div>
+</div>
+  
+{% endblock body %}
+

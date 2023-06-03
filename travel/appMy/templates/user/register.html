@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<style media="screen">
+    .call-to-action{
+        margin-top: 0%;
+    }
+  </style>
+{% endblock css %}
+{% block body %}
+<body>
+  <div class="login-register">
+    <section class="wrapper">
+        <div class="form signup">
+          <header>Signup</header>
+          {% if hata %}
+            
+          <div class="hata d-flex justify-content-center mt-5 ">
+              <p class="text-danger">{{ hata }}</p>
+
+          </div>
+          {% endif %}
+                                  
+          <form  method="POST">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Full name" required />
+            <input type="text" name="email" placeholder="Email address" required />
+            <input type="password" name="password1" placeholder="Password" required />
+            <input type="password" name="password2" placeholder="Password Repeat" required />
+           
+            <div class="checkbox">
+              <input type="checkbox" id="signupCheck" />
+              <label for="signupCheck">I accept all terms & conditions</label>
+            </div>
+           
+            <button type="submit" class=" button Signup-btn" name="button"  value="Signup">Signup</button>
+          </form>
+        </div>
+        <div class="form login">
+          <header>Login</header>
+          <form method="POST">
+            {% csrf_token %}
+            <input type="text" placeholder="user name" name="name" required />
+            <input type="password" placeholder="Password" name="password" required />
+            <a href="#">Forgot password?</a>
+            <button type="submit" class=" button Signup-btn" name="button"  value="Login">Signup</button>
+          </form>
+        </div>
+        <script>
+          const wrapper = document.querySelector(".wrapper"),
+            signupHeader = document.querySelector(".signup header"),
+            loginHeader = document.querySelector(".login header");
+          loginHeader.addEventListener("click", () => {
+            wrapper.classList.add("active");
+          });
+          signupHeader.addEventListener("click", () => {
+            wrapper.classList.remove("active");
+          });
+        </script>
+      </section>
+  </div>
+</body>
+{% endblock body %}

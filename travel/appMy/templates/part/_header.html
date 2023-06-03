@@ -1,0 +1,81 @@
+{% load static %}
+<style>
+
+  .btn-secondary{
+    background: none;
+    color:#fff ;
+    height: auto;
+    width: auto;
+  }
+  .btn-secondary :hover{
+    background: none;
+  }
+  .dropdown:hover{
+    background: none;
+  }
+
+  .dropdown-menu[data-bs-popper]{
+    margin-top: 20px;
+    transform: translateX(-25%);
+    border-radius: 0px;
+    border-radius: 0px 0px 5px 5px;
+
+  }
+</style>
+  <!-- navbar starts -->
+  <nav class="navbar navbar-expand-lg  bg-color fixed-top p-3">
+    <div class="container  ">
+      <a class="navbar-brand" href="#"> <img src="{% static 'img/logo.png'  %}" alt="">  </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <input type="checkbox" id="checkbox">
+        <label for="checkbox" class="toggle" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <div class="bars" id="bar1"></div>
+            <div class="bars" id="bar2"></div>
+            <div class="bars" id="bar3"></div>
+        </label>
+      </button>
+     
+      <div class="collapse navbar-collapse   " id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0  w-100 d-flex justify-content-end ">
+          <li class="nav-item  ">
+            <a class="nav-link " aria-current="page" href=" {%  url 'index'  %} ">Home</a>
+           
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="{% url 'about'  %}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="{% url 'deals'  %}">Tours</a>
+          </li>
+          {% if request.user.is_authenticated %}
+            
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="{% url 'BasketUser' %}">Resarvation</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            {% if request.user.is_authenticated %}
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" >
+                  {{ user.username }}<i class="bi bi-arrow-down-short"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark  ">
+                  <li><a class="dropdown-item" href=" {% url 'logouth' %} ">Log out</a></li>
+                  <li><a class="dropdown-item" href="{% url 'past_orders' %}">
+                    past reservation</a></li>
+              
+                </ul>
+            {% else %}
+              
+            <a class="nav-link " aria-current="page" href="{% url 'register'  %}">Login / Register</a>
+            {% endif %}
+            
+          </li>
+  
+          
+        </ul>
+       
+      </div>
+    </div>
+  </nav>
